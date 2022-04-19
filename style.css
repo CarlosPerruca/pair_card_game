@@ -2,3 +2,10 @@
     margin: 0px;
     padding: 0px;
 }
+.card_img {
+    align-self: center;
+    margin: 2px;
+    background-image: url("./img/backCard.jpg");
+    background-size: 100%;
+    height: 20.5em;
+}

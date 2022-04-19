@@ -15,6 +15,8 @@ let cards = [
 ];
 let pickedCars = [];
 let counterPair = 0;
+let cardBefore;
+let cardNow;
 let shuffleCards = () => {
     let currentIndex = cards.length,
         randomIndex;
@@ -32,3 +34,14 @@ let shuffleCards = () => {
     return cards;
 };
 let randomCard = shuffleCards(cards);
+
+let click = false;
+let getPair = () => {
+    if (click == false) {
+        click = true;
+        cardBefore = card;
+        document.getElementById(cardBefore).style = 'background: url ("./img/' + cards[cardBefore] + '.webp");';
+        document.getElementById(cardBefore).disabled = true;
+    } else {
+    }
+};
