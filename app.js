@@ -2,20 +2,19 @@
 //metodo para barajar el array de cartas y colocarlas aleatorias.
 //metodo para comparar si las cartas elegidas son las mismas.
 //metodo para que cuando se alcancen las 8 parejas se acabe el juego.
-let cards = ["Guilliman", "Horus", "Konrad", "Leman", "Lion", "Magnus", "Mortarion", "Sanguinius"];
+
+let cards = [
+    { name: "Guilliman", img: "Guilliman.webp" },
+    { name: "Horus", img: "Horus.webp" },
+    { name: "Konrad", img: "Konrad.webp" },
+    { name: "Leman", img: "Leman.webp" },
+    { name: "Lion", img: "Lion.webp" },
+    { name: "Magnus", img: "Magnus.webp" },
+    { name: "Mortarion", img: "Mortarion.webp" },
+    { name: "Sanguinius", img: "Sanguinius.webp" },
+];
 let pickedCars = [];
 let counterPair = 0;
-// class MemoryGame {
-//     constructor(cards) {
-//         this.cards = cards;
-//         this.cardName = cardName;
-//         this.cardImg = cardImg;
-//         this.pairClicked = pairClicked;
-//         this.pairGuessed = pairGuessed;
-//     }
-//     checkIfPair() {}
-//     checkIfEnd() {}
-// }
 let shuffleCards = () => {
     let currentIndex = cards.length,
         randomIndex;
@@ -32,4 +31,4 @@ let shuffleCards = () => {
 
     return cards;
 };
-let randomCards = shuffleCards(cards);
+let randomCard = shuffleCards(cards);
