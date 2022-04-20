@@ -22,9 +22,7 @@ let idActual; //Guarda el id de la segunda imagen mostrada
 
 let copyPrimarchs = new Array(8); //Lo usamos para mezclar()
 
-shuffle();
-
-function shuffle() {
+let shuffle = () => {
     for (let i = 0; i < arrayPrimarchs.length; i++) {
         random = parseInt(Math.random() * 8);
 
@@ -37,18 +35,18 @@ function shuffle() {
     }
 
     arrayPrimarchs = copyPrimarchs;
-}
+};
 
-function time(ms) {
+let time = (ms) => {
     setTimeout(draw, ms);
-}
+};
 
-function draw() {
+let draw = () => {
     document.getElementById(idActual).style = 'background-image: url("./img/backCard.jpg")';
     document.getElementById(idAnterior).style = 'background-image: url("./img/backCard.jpg")';
-}
+};
 
-function getPair(num) {
+let getPair = (num) => {
     if (clicks == 1) {
         //Cuando se hace click en la primera imagen
         clicks = 2;
@@ -83,9 +81,11 @@ function getPair(num) {
             alert("Has ganado!  ^_^");
         }
     }
-}
+};
 
-let cardToCheck = [];
+shuffle();
+
+//let cardToCheck = [];
 // let pickedCards = [];
 // let counterPair = 0;
 // let pairClicked = 0;
