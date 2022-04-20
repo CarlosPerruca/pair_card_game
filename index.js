@@ -26,12 +26,12 @@ shuffle();
 
 function shuffle() {
     for (let i = 0; i < arrayPrimarchs.length; i++) {
-        random = parseInt(Math.random() * 12);
+        random = parseInt(Math.random() * 8);
 
         while (copyPrimarchs[random] != null) {
             //En JavaScript el contenido de un array creado por defecto es null
 
-            random = parseInt(Math.random() * 12);
+            random = parseInt(Math.random() * 8);
         }
         copyPrimarchs[random] = arrayPrimarchs[i];
     }
