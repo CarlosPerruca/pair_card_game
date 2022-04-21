@@ -4,38 +4,56 @@
 //metodo para que cuando se alcancen las 8 parejas se acabe el juego.
 
 let arrayPrimarchs = [
-    { name: "Guilliman", img: "Guilliman.webp" },
-    { name: "Horus", img: "Horus.webp" },
-    { name: "Konrad", img: "Konrad.webp" },
-    { name: "Leman", img: "Leman.webp" },
-    { name: "Lion", img: "Lion.webp" },
-    { name: "Magnus", img: "Magnus.webp" },
-    { name: "Mortarion", img: "Mortarion.webp" },
-    { name: "Sanguinius", img: "Sanguinius.webp" },
+    "Guilliman",
+    "Horus",
+    "Konrad",
+    "Leman",
+    "Lion",
+    "Magnus",
+    "Mortarion",
+    "Sanguinius",
+    "Khan",
+    "Fulgrim",
+    "Alpharius",
+    "Vulkan",
+    "Guilliman",
+    "Horus",
+    "Konrad",
+    "Leman",
+    "Lion",
+    "Magnus",
+    "Mortarion",
+    "Sanguinius",
+    "Khan",
+    "Fulgrim",
+    "Alpharius",
+    "Vulkan",
 ];
 
-let random = 0;
+let aleatory = 0;
 let clicks = "one";
 let counter = 0;
 let idFirstCard;
 let idSecondCard;
 
-let copyPrimarchs = new Array(8);
+let copyPrimarchs = new Array(12);
 
-let shuffle = () => {
+shuffle();
+
+function shuffle() {
     for (let i = 0; i < arrayPrimarchs.length; i++) {
-        random = parseInt(Math.random() * 8);
-        console.log("for", random);
+        aleatory = parseInt(Math.random() * 12);
+        console.log("for", aleatory);
 
-        while (copyPrimarchs[random] != null) {
-            random = parseInt(Math.random() * 8);
+        while (copyPrimarchs[aleatory] != null) {
+            aleatory = parseInt(Math.random() * 12);
         }
-        copyPrimarchs[random] = arrayPrimarchs[i];
-        console.log(`en la posición ${i} meto la carta ${random + 1}`);
+        copyPrimarchs[aleatory] = arrayPrimarchs[i];
+        console.log(`en la posición ${i} meto la carta ${aleatory + 1}`);
     }
 
     arrayPrimarchs = copyPrimarchs;
-};
+}
 
 let time = (ms) => {
     setTimeout(draw, ms);
@@ -50,15 +68,15 @@ let getPair = (num) => {
     if (clicks == "one") {
         clicks = "two";
         idFirstCard = num;
-        document.getElementById(idFirstCard).style = 'background: url("./img/' + arrayPrimarchs[idFirstCard].name + '.webp"); background-size: cover; background-repeat: no-repeat;';
+        document.getElementById(idFirstCard).style = 'background: url("./img/' + arrayPrimarchs[idFirstCard] + '.webp"); background-size: cover; background-repeat: no-repeat;';
         document.getElementById(idFirstCard).disabled = true;
-        console.log(arrayPrimarchs[idFirstCard].name);
+        console.log(arrayPrimarchs[idFirstCard]);
     } else {
         clicks = "one";
         idSecondCard = num;
-        document.getElementById(idSecondCard).style = 'background: url("./img/' + arrayPrimarchs[idSecondCard].name + '.webp"); background-size: cover; background-repeat: no-repeat;';
+        document.getElementById(idSecondCard).style = 'background: url("./img/' + arrayPrimarchs[idSecondCard] + '.webp"); background-size: cover; background-repeat: no-repeat;';
         document.getElementById(idSecondCard).disabled = true;
-        console.log(arrayPrimarchs[idSecondCard].name);
+        console.log(arrayPrimarchs[idSecondCard]);
 
         if (arrayPrimarchs[idSecondCard] != arrayPrimarchs[idFirstCard]) {
             time(500);
@@ -71,12 +89,10 @@ let getPair = (num) => {
         }
 
         if (counter == 16) {
-            alert("Has ganado!  ^_^");
+            alert("YOU WIN... an orbital bomber in your position =][= Have a nice day =][=");
         }
     }
 };
-
-shuffle();
 
 //let cardToCheck = [];
 // let pickedCards = [];
