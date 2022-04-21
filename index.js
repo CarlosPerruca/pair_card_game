@@ -13,23 +13,21 @@ let arrayPrimarchs = [
     { name: "Mortarion", img: "Mortarion.webp" },
     { name: "Sanguinius", img: "Sanguinius.webp" },
 ];
-//
-let random = 0; //Almacena numeros randoms en mezclar()
-let clicks = 1; //Indica si hemos hecho 1 click o 2.
-let counter = 0; //Cuenta el numero de parejas acertadas
-let idAnterior; //Guarda el id de la primera imagen mostrada
-let idActual; //Guarda el id de la segunda imagen mostrada
 
-let copyPrimarchs = new Array(8); //Lo usamos para mezclar()
+let random = 0;
+let clicks = "one";
+let counter = 0;
+let idFirstCard;
+let idSecondCard;
+
+let copyPrimarchs = new Array(arrayPrimarchs.length);
 
 let shuffle = () => {
     for (let i = 0; i < arrayPrimarchs.length; i++) {
-        random = parseInt(Math.random() * 8);
+        random = parseInt(Math.random() * arrayPrimarchs.length);
 
         while (copyPrimarchs[random] != null) {
-            //En JavaScript el contenido de un array creado por defecto es null
-
-            random = parseInt(Math.random() * 8);
+            random = parseInt(Math.random() * arrayPrimarchs.length);
         }
         copyPrimarchs[random] = arrayPrimarchs[i];
     }
@@ -42,39 +40,32 @@ let time = (ms) => {
 };
 
 let draw = () => {
-    document.getElementById(idActual).style = 'background-image: url("./img/backCard.jpg")';
-    document.getElementById(idAnterior).style = 'background-image: url("./img/backCard.jpg")';
+    document.getElementById(idSecondCard).style = 'background-image: url("./img/backCard.jpg")';
+    document.getElementById(idFirstCard).style = 'background-image: url("./img/backCard.jpg")';
 };
 
 let getPair = (num) => {
-    if (clicks == 1) {
-        //Cuando se hace click en la primera imagen
-        clicks = 2;
-        idAnterior = num;
-        document.getElementById(idAnterior).style = 'background: url("./img/' + arrayPrimarchs[idAnterior].name + '.webp");';
-        //Deshabilitamos el boton para que no se pueda volver a pulsar y nos lo cuente como un click
-        document.getElementById(idAnterior).disabled = true;
-        console.log(arrayPrimarchs[idAnterior].name);
+    if (clicks == "one") {
+        clicks = "two";
+        idFirstCard = num;
+        document.getElementById(idFirstCard).style = 'background: url("./img/' + arrayPrimarchs[idFirstCard].name + '.webp"); background-size: cover; background-repeat: no-repeat;';
+        document.getElementById(idFirstCard).disabled = true;
+        console.log(arrayPrimarchs[idFirstCard].name);
     } else {
-        //Cuando se ha mostrado la primera y se hace click en la segunda imagen
-        clicks = 1;
-        idActual = num;
-        document.getElementById(idActual).style = 'background: url("./img/' + arrayPrimarchs[idActual].name + '.webp");';
-        document.getElementById(idActual).disabled = true; //Deshabilitamos el segundo boton pulsado
-        console.log(arrayPrimarchs[idActual].name);
+        clicks = "one";
+        idSecondCard = num;
+        document.getElementById(idSecondCard).style = 'background: url("./img/' + arrayPrimarchs[idSecondCard].name + '.webp"); background-size: cover; background-repeat: no-repeat;';
+        document.getElementById(idSecondCard).disabled = true;
+        console.log(arrayPrimarchs[idSecondCard].name);
 
-        //Hacemos que el programa se espere para que podamos visualizar la segunda imagen cuando son distintas, antes de que se de la vuelta
-
-        if (arrayPrimarchs[idActual] != arrayPrimarchs[idAnterior]) {
-            //Si las imagenes son distintas
+        if (arrayPrimarchs[idSecondCard] != arrayPrimarchs[idFirstCard]) {
             time(500);
-            //Borramos el atributo disabled de los 2 botones pulsados, para que podamos volverlos a pulsar
-            document.getElementById(idAnterior).removeAttribute("disabled");
-            document.getElementById(idActual).removeAttribute("disabled");
+
+            document.getElementById(idFirstCard).removeAttribute("disabled");
+            document.getElementById(idSecondCard).removeAttribute("disabled");
         } else {
-            //Si las imagenes son iguales
             counter++;
-            document.getElementById("encontradas").innerHTML = "Encontradas: " + counter;
+            document.getElementById("cardsPair").innerHTML = "cardsPair: " + counter;
         }
 
         if (counter == 8) {
