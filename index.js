@@ -20,16 +20,18 @@ let counter = 0;
 let idFirstCard;
 let idSecondCard;
 
-let copyPrimarchs = new Array(arrayPrimarchs.length);
+let copyPrimarchs = new Array(8);
 
 let shuffle = () => {
     for (let i = 0; i < arrayPrimarchs.length; i++) {
-        random = parseInt(Math.random() * arrayPrimarchs.length);
+        random = parseInt(Math.random() * 8);
+        console.log("for", random);
 
         while (copyPrimarchs[random] != null) {
-            random = parseInt(Math.random() * arrayPrimarchs.length);
+            random = parseInt(Math.random() * 8);
         }
         copyPrimarchs[random] = arrayPrimarchs[i];
+        console.log(`en la posición ${i} meto la carta ${random + 1}`);
     }
 
     arrayPrimarchs = copyPrimarchs;
@@ -68,7 +70,7 @@ let getPair = (num) => {
             document.getElementById("cardsPair").innerHTML = "cardsPair: " + counter;
         }
 
-        if (counter == 8) {
+        if (counter == 16) {
             alert("Has ganado!  ^_^");
         }
     }
